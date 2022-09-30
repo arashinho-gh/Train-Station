@@ -1,11 +1,11 @@
+from pathlib import Path
 from GraphBuilder import GraphBuilder
 from MetricsExtractor import Metrics_Extractor
-from PathFinder import PathFinder
+from SortingAlgorithms.AStar import AStar
+from SortingAlgorithms.PathFinder import PathFinder
 
-
-
-
-stations_attr, stations = Metrics_Extractor('./_dataset/london.stations.csv').metrics
+stations_attr, stations = Metrics_Extractor(
+    './_dataset/london.stations.csv').metrics
 
 bank = {}
 
@@ -18,16 +18,17 @@ for station in stations:
             bank[station[0]] = {}
 
         bank[station[0]][attr] = station[index]
-    
 
-connections_attr, connections = Metrics_Extractor('./_dataset/london.connections.csv').metrics
 
+connections_attr, connections = Metrics_Extractor(
+    './_dataset/london.connections.csv').metrics
+
+print(stations)
 graph = GraphBuilder(stations, connections)
 print(graph.adj_list['300'])
+Path = PathFinder(graph, "11")
 
-path_finder = PathFinder(graph, '11')
-
-# print(path_finder.distance_bank)
-print(path_finder.getPath('11', '305'))
-
-
+print("___________________________")
+a_star = AStar(graph, stations, "11", "69")
+print(a_star.a_star_algorithm())
+print(Path.getPath("11", "69"))
