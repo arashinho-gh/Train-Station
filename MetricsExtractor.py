@@ -13,10 +13,24 @@ class Metrics_Extractor:
             res_data = []
 
             for d in data:
+                
+                temp = ""
 
-                d = d.strip().split(",")
+                if ", " in d:
+            
+                    d = d.strip().replace(", ", "#").split(",")
+                    temp = d
 
-                res_data.append(d)
+                else:
+
+                    d = d.strip().split(",")
+                    temp = d
+
+                for i in range(len(d)):
+                    if "#" in d[i]:
+                        d[i] = d[i].replace("#", ", ")
+
+                res_data.append(temp)
 
         self.metrics = (attributes, res_data)
 
