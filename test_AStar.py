@@ -2,8 +2,8 @@ from pathfinder.PathFinderFactory import PathFinderFactory
 from GraphBuilder import GraphBuilder
 from Utils.MetricsExtractor import Metrics_Extractor
 
-stations_data = Metrics_Extractor('./_dataset/aStar.graph.stations.csv').metrics
-connections_attr, connections = Metrics_Extractor('./_dataset/aStar.graph.connections.csv').metrics
+stations_data = Metrics_Extractor('./_dataset/a_star.graph.stations.csv').metrics
+connections_attr, connections = Metrics_Extractor('./_dataset/a_star.graph.connections.csv').metrics
 
 graph = GraphBuilder(stations_data, connections)
 pathFinderFactory = PathFinderFactory()

@@ -8,8 +8,8 @@ print("------- A* v.s Dijkstra -------")
 
 # Connected Graph
 print("------- Start and End are connected -------")
-stations_data = Metrics_Extractor('./_dataset/benchMarking1.graph.stations.csv').metrics
-connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking1.graph.connections.csv').metrics
+stations_data = Metrics_Extractor('./_dataset/benchMarking_1.graph.stations.csv').metrics
+connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking_1.graph.connections.csv').metrics
 
 graph_1 = GraphBuilder(stations_data, connections)
 
@@ -28,8 +28,8 @@ print("Numbers of edges relaxed:", dijkstra.relaxed_edges)
 
 # Not Connected
 print("------- Start and End are NOT connected -------")
-stations_data = Metrics_Extractor('./_dataset/benchMarking2.graph.stations.csv').metrics
-connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking2.graph.connections.csv').metrics
+stations_data = Metrics_Extractor('./_dataset/benchMarking_2.graph.stations.csv').metrics
+connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking_2.graph.connections.csv').metrics
 
 graph_2 = GraphBuilder(stations_data, connections)
 
@@ -50,8 +50,8 @@ print("Numbers of edges relaxed:", dijkstra.relaxed_edges)
 # Start and End is the same
 print("------- Start and End are the same -------")
 
-ations_data = Metrics_Extractor('./_dataset/benchMarking1.graph.stations.csv').metrics
-connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking1.graph.connections.csv').metrics
+ations_data = Metrics_Extractor('./_dataset/benchMarking_1.graph.stations.csv').metrics
+connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking_1.graph.connections.csv').metrics
 
 graph_3 = GraphBuilder(stations_data, connections)
 
@@ -72,8 +72,8 @@ print("Numbers of edges relaxed:", dijkstra.relaxed_edges)
 # One path from start to end
 print("------- No edges to Relax -------")
 
-stations_data = Metrics_Extractor('./_dataset/benchMarking3.graph.stations.csv').metrics
-connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking3.graph.connections.csv').metrics
+stations_data = Metrics_Extractor('./_dataset/benchMarking_3.graph.stations.csv').metrics
+connections_attr, connections = Metrics_Extractor('./_dataset/benchMarking_3.graph.connections.csv').metrics
 
 graph_4 = GraphBuilder(stations_data, connections)
 
