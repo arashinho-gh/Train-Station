@@ -1,19 +1,21 @@
 
 class GraphBuilder:
 
-    vertices = 0
-
-    edges = 0
-
-    adj_list = {}
 
     def __init__(self, vertices_data = None, edges = None):
-        
+        self.vertices = 0
+        self.edges = 0
+        self.adj_list = {}
+
         if vertices_data and edges:
             self.vertices_data = vertices_data
             self.vertices = vertices_data[1]
-
             self.edges = edges
+
+            for t in self.vertices:
+
+                self.adj_list[t[0]] = {}
+
 
             for edge in edges:
 

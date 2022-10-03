@@ -1,8 +1,0 @@
-"station1","station2","line","time"
-A,B,0,6
-A,D,0,1
-B,D,0,2
-B,C,0,5
-B,E,0,2
-D,E,0,1
-E,C,0,5

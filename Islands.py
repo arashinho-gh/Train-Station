@@ -1,13 +1,12 @@
-from PathFinder import PathFinder
+from pathfinder.PathFinderFactory import PathFinderFactory
 
 class Islands:
 
     islands = {}
 
-    def __init__(self, graph, stations_bank):
+    def __init__(self, graph):
 
         self.graph = graph
-        self.stations_bank = stations_bank
 
     def findIslands(self):
 
@@ -17,25 +16,25 @@ class Islands:
 
             visited.add(node)
 
-            for neighbor in self.graph.adj_list[node]:
+            for neighbor in self.graph.getAdjList()[node]:
                 
-                if self.stations_bank[node]['zone'] == self.stations_bank[neighbor]['zone']:
+                if self.graph.getZone(node) == self.graph.getZone(neighbor):
 
                     dfs(neighbor, visited)
 
         v = set([])
 
-        for node, neighbors in self.graph.adj_list.items():            
+        for node, neighbors in self.graph.getAdjList().items():            
             
             if node not in v:
 
-                self.islands[self.stations_bank[node]['zone']] = self.islands.get(self.stations_bank[node]['zone'], [])
+                self.islands[self.graph.getZone(node)] = self.islands.get(self.graph.getZone(node), [])
 
                 visited = set([])
 
                 dfs(node, visited)
 
-                self.islands[self.stations_bank[node]['zone']].append(list(visited))
+                self.islands[self.graph.getZone(node)].append(sorted(list(visited)))
                 
                 v = v.union(visited)
 
@@ -43,31 +42,25 @@ class Islands:
 
         pathToIslands = {}
 
-        for zone, Islands in self.islands.items():
 
-            pathToIslands[zone] = pathToIslands.get(zone, {})
+        for node in self.graph.getAdjList().keys():
 
-            for i in range(len(Islands) - 1):
+            pathToIslands[node] = {}
 
-                pathToIslands[zone][i] = pathToIslands[zone].get(i, {}) 
+            dijkstra = PathFinderFactory.initialize_pathFinder("Dijkstra", self.graph, node, node)
 
-                for j in range(i + 1, len(Islands)):
-                    
+            dijkstra.find_path()
 
-                    path_finder = PathFinder(self.graph, Islands[i][0])
+            for neighbor in dijkstra.nodes_data.keys():
+                
+                dijkstra.destination = neighbor
+                path = dijkstra.get_path()
+                zones = set()
+                for n in path:
+                    zones.add(self.graph.getZone(n))
 
-                    path = path_finder.getPath(Islands[i][0], Islands[j][0])
-                    Islands_path = set([])
+                pathToIslands[node][neighbor] = {"path": path, "zones": zones}
 
-                    for station in path:
-
-                        station = str(station)
-
-                        Islands_path.add(self.stations_bank[station]['zone'])
-
-                    pathToIslands[zone][i][j] = {"zones_to_go_through": Islands_path }
+                
 
         return pathToIslands
-
-
-
