@@ -1,7 +1,7 @@
 from pathfinder.PathFinderFactory import PathFinderFactory
 from GraphBuilder import GraphBuilder
-from MetricsExtractor import Metrics_Extractor
-from salesman import Salesman
+from Utils.MetricsExtractor import Metrics_Extractor
+from pathfinder.Salesman import Salesman
 
 stations_data = Metrics_Extractor('./_dataset/TSP.graph.stations.csv').metrics
 connections_attr, connections = Metrics_Extractor('./_dataset/TSP.graph.connections.csv').metrics

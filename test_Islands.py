@@ -1,7 +1,7 @@
 from pathfinder.PathFinderFactory import PathFinderFactory
 from GraphBuilder import GraphBuilder
-from MetricsExtractor import Metrics_Extractor
-from Islands import Islands
+from Utils.MetricsExtractor import Metrics_Extractor
+from pathfinder.Islands import Islands
 
 stations_data = Metrics_Extractor('./_dataset/CC.graph.stations.csv').metrics
 connections_attr, connections = Metrics_Extractor('./_dataset/CC.graph.connections.csv').metrics

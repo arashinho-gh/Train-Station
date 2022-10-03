@@ -1,6 +1,6 @@
 from pathfinder.PathFinderFactory import PathFinderFactory
 from GraphBuilder import GraphBuilder
-from MetricsExtractor import Metrics_Extractor
+from Utils.MetricsExtractor import Metrics_Extractor
 import random
 
 pathFinderFactory = PathFinderFactory()
